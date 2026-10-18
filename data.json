@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "cats": [
   {
    "id": "geburtstag",
@@ -201,8 +201,9 @@
   }
  ],
  "texts": {
-  "tagline": "Fotograf aus Leipzig. Clubnächte, Partys und Portraits, wie sie sich anfühlen.",
+  "tagline": "Fotograf aus Leipzig. Clubnächte, Partys und Portraits, wie sie sich anfühlen. Test",
   "about": "Ich fotografiere Feiern, Clubnächte und Portraits in Leipzig und Umgebung. Du planst eine Party, ein Festival oder einen Geburtstag und suchst jemanden, der die besten Momente festhält? Schreib mir.",
   "email": "robin.langer2007@gmail.com"
- }
+ },
+ "updated": "2026-10-18T10:44:42.911Z"
 }
