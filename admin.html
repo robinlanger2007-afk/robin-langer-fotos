@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d0c11">
+<title>Verwaltung · Robin Langer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#0d0c11;--bg2:#16151c;--bg3:#1e1c26;--ink:#f3eee6;--mute:#a9a3b3;--line:#2a2833;--accent:#f0b44c;--on:#17141c;--bad:#ff8f7a;--ok:#7fd49b;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:16px/1.5 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:110px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2{font-family:Syne,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 22px) 16px 0}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px}
+header h1{font-size:2rem;line-height:1}
+header p{margin:.35rem 0 0;color:var(--mute);font-size:.9rem}
+.lnk{background:none;border:0;color:var(--mute);text-decoration:underline;font-size:.85rem;padding:4px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+.card h2{font-size:1.25rem;margin-bottom:12px}
+.hint{color:var(--mute);font-size:.88rem;margin:.2rem 0 .8rem}
+label.f{display:block;margin:0 0 12px}
+label.f>span{display:block;font-size:.82rem;color:var(--mute);font-weight:600;margin-bottom:5px}
+input[type=text],input[type=password],input[type=email],select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.65rem .75rem;font-size:16px;min-height:46px}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:var(--accent);color:var(--on);border:0;border-radius:12px;padding:.8rem 1.2rem;font-weight:700}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.wide{width:100%}
+.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:2px dashed var(--line);border-radius:14px;padding:26px 14px;text-align:center;color:var(--mute);cursor:pointer;transition:.2s}
+.drop b{color:var(--ink);font-size:1.05rem}
+.drop.over{border-color:var(--accent);background:rgba(240,180,76,.06)}
+.drop input{display:none}
+.row2{display:grid;grid-template-columns:1fr;gap:10px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:none;border-radius:99px;padding:.4rem .9rem;font-size:.88rem;font-weight:600;color:var(--mute)}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ph{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.ph:first-child{border-top:0}
+.ph img{width:84px;height:84px;object-fit:cover;border-radius:10px;background:var(--line)}
+.ph .new{position:relative}
+.ph .new::after{content:"neu";position:absolute;left:4px;top:4px;background:var(--accent);color:var(--on);font-size:.68rem;font-weight:800;border-radius:6px;padding:1px 6px}
+.ph input,.ph select{min-height:40px;padding:.45rem .6rem;font-size:15px}
+.acts{display:flex;gap:6px;margin-top:6px}
+.acts select{flex:1}
+.ib{width:40px;height:40px;flex:none;border-radius:10px;border:1px solid var(--line);background:var(--bg);display:grid;place-items:center;font-size:1rem}
+.ib.del{color:var(--bad)}
+.cat{display:flex;gap:6px;margin-bottom:8px}
+.cat input{flex:1}
+.cat small{align-self:center;color:var(--mute);white-space:nowrap;font-size:.8rem;min-width:56px;text-align:right}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(13,12,17,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar .in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.bar .st{flex:1;font-size:.9rem;color:var(--mute);line-height:1.35}
+.bar .st b{color:var(--ink)}
+.msg{border-radius:12px;padding:.8rem 1rem;margin-bottom:16px;font-size:.92rem}
+.msg.err{background:rgba(255,143,122,.1);border:1px solid rgba(255,143,122,.4);color:#ffc1b5}
+.msg.ok{background:rgba(127,212,155,.1);border:1px solid rgba(127,212,155,.4);color:#c4f0d2}
+.steps{margin:.4rem 0 1rem;padding-left:1.2rem;color:var(--mute);font-size:.9rem}
+.steps li{margin:.2rem 0}
+.empty{color:var(--mute);text-align:center;padding:20px 0;font-size:.92rem}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px}
+@keyframes sp{to{transform:rotate(360deg)}}
+[hidden]{display:none!important}
+@media(min-width:640px){.row2{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><h1>Verwaltung</h1><p>Fotos &amp; Texte für deine App</p></div>
+    <button class="lnk" id="logout" hidden>Abmelden</button>
+  </header>
+
+  <div id="note"></div>
+
+  <!-- Anmeldung -->
+  <section class="card" id="login" hidden>
+    <h2>Einmal verbinden</h2>
+    <p class="hint">Diese Angaben werden nur auf diesem Gerät gespeichert.</p>
+    <label class="f"><span>GitHub-Benutzername</span><input type="text" id="lUser" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
+    <label class="f"><span>Zugangsschlüssel (Token)</span><input type="password" id="lToken" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+    <label class="f"><span>Name des Speichers (Repository)</span><input type="text" id="lRepo" value="robin-langer-fotos" autocapitalize="off" spellcheck="false"></label>
+    <button class="btn wide" id="lGo">Verbinden</button>
+  </section>
+
+  <div id="main" hidden>
+    <!-- Hochladen -->
+    <section class="card">
+      <h2>Fotos hinzufügen</h2>
+      <label class="f"><span>In welchen Bereich?</span><select id="upCat"></select></label>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept="image/*" multiple>
+        <b>＋ Fotos auswählen</b>
+        <span>oder hierher ziehen · werden automatisch verkleinert</span>
+      </label>
+      <p class="hint" id="upState" style="margin:.7rem 0 0"></p>
+    </section>
+
+    <!-- Fotos -->
+    <section class="card">
+      <h2>Deine Fotos</h2>
+      <div class="chips" id="filter"></div>
+      <div id="list"></div>
+    </section>
+
+    <!-- Bereiche -->
+    <section class="card">
+      <h2>Bereiche</h2>
+      <p class="hint">So heißen die Abschnitte in der App. Leere Bereiche kannst du löschen.</p>
+      <div id="cats"></div>
+      <div class="cat" style="margin-top:12px"><input type="text" id="newCat" placeholder="Neuer Bereich, z. B. Hochzeitsfotograf"><button class="btn ghost" id="addCat">Hinzufügen</button></div>
+    </section>
+
+    <!-- Texte -->
+    <section class="card">
+      <h2>Texte</h2>
+      <label class="f"><span>Untertitel auf der Startseite</span><input type="text" id="tTag"></label>
+      <label class="f"><span>„Über mich“-Text</span><textarea id="tAbout"></textarea></label>
+      <label class="f"><span>E-Mail für Anfragen</span><input type="email" id="tMail"></label>
+    </section>
+  </div>
+</div>
+
+<div class="bar" id="bar" hidden>
+  <div class="in">
+    <div class="st" id="st">Alles veröffentlicht</div>
+    <button class="btn" id="pub" disabled>Veröffentlichen</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var API = 'https://api.github.com';
+  var cfg = {}; try { cfg = JSON.parse(localStorage.getItem('rl-admin') || '{}'); } catch (e) {}
+  var branch = 'main', D = null, savedJson = '', pending = {}, removed = {}, previews = {}, filter = 'all', busy = false;
+
+  /* ---------- Helfer ---------- */
+  function note(t, kind) { $('note').innerHTML = t ? '<div class="msg ' + (kind || 'ok') + '"></div>' : ''; if (t) $('note').firstChild.textContent = t; if (t) window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function el(tag, attrs, kids) { var e = document.createElement(tag); for (var k in attrs || {}) { if (k === 'text') e.textContent = attrs[k]; else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); } (kids || []).forEach(function (c) { if (c) e.appendChild(c); }); return e; }
+  function gh(path, opt) {
+    opt = opt || {};
+    return fetch(API + path, {
+      method: opt.method || 'GET',
+      headers: { 'Authorization': 'Bearer ' + cfg.token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      body: opt.body ? JSON.stringify(opt.body) : undefined,
+      cache: 'no-store'
+    }).then(function (r) {
+      if (r.ok) return r.status === 204 ? null : r.json();
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        var e = new Error(j.message || ('Fehler ' + r.status)); e.status = r.status; throw e;
+      });
+    });
+  }
+  function b64ToUtf8(b) { var bin = atob(b.replace(/\n/g, '')), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new TextDecoder().decode(u); }
+  function utf8ToB64(s) { var u = new TextEncoder().encode(s), bin = ''; for (var i = 0; i < u.length; i += 0x8000) bin += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(bin); }
+  function rawUrl(p) { return 'https://raw.githubusercontent.com/' + cfg.user + '/' + cfg.repo + '/' + branch + '/' + p; }
+  function uid() { return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function explain(e) {
+    if (e.status === 401) return 'Der Zugangsschlüssel stimmt nicht oder ist abgelaufen. Bitte neu verbinden.';
+    if (e.status === 403) return 'Der Zugangsschlüssel darf nicht schreiben. Beim Erstellen „Contents: Read and write“ auswählen.';
+    if (e.status === 404) return 'Speicher nicht gefunden. Stimmen Benutzername und Repository-Name, und hat der Schlüssel Zugriff darauf?';
+    return 'Etwas ist schiefgelaufen: ' + (e.message || e) + '. Prüfe deine Internetverbindung und versuch es nochmal.';
+  }
+
+  /* ---------- Verbinden & Laden ---------- */
+  function showLogin() {
+    $('login').hidden = false; $('main').hidden = true; $('bar').hidden = true; $('logout').hidden = true;
+    $('lUser').value = cfg.user || ''; $('lRepo').value = cfg.repo || 'robin-langer-fotos';
+  }
+  $('lGo').addEventListener('click', function () {
+    cfg = { user: $('lUser').value.trim(), token: $('lToken').value.trim(), repo: $('lRepo').value.trim() || 'robin-langer-fotos' };
+    if (!cfg.user || !cfg.token) { note('Bitte Benutzername und Zugangsschlüssel eingeben.', 'err'); return; }
+    load(true);
+  });
+  $('logout').addEventListener('click', function () {
+    if (dirty() && !confirm('Es gibt unveröffentlichte Änderungen. Trotzdem abmelden?')) return;
+    localStorage.removeItem('rl-admin'); cfg = {}; note(''); showLogin();
+  });
+
+  function load(fromLogin) {
+    note(''); $('lGo').disabled = true; $('lGo').innerHTML = '<span class="spin"></span> Verbinde …';
+    gh('/repos/' + cfg.user + '/' + cfg.repo).then(function (repo) {
+      branch = repo.default_branch || 'main';
+      if (repo.permissions && !repo.permissions.push) { var e = new Error('nopush'); e.status = 403; throw e; }
+      return gh('/repos/' + cfg.user + '/' + cfg.repo + '/contents/data.json?ref=' + encodeURIComponent(branch));
+    }).then(function (f) {
+      D = JSON.parse(b64ToUtf8(f.content));
+      D.cats = D.cats || []; D.photos = D.photos || []; D.texts = D.texts || {};
+      savedJson = JSON.stringify(D); pending = {}; removed = {}; previews = {};
+      localStorage.setItem('rl-admin', JSON.stringify(cfg));
+      $('login').hidden = true; $('main').hidden = false; $('bar').hidden = false; $('logout').hidden = false;
+      renderAll();
+      if (fromLogin) note('Verbunden! Du kannst jetzt Fotos und Texte bearbeiten.', 'ok');
+    }).catch(function (e) {
+      note(explain(e), 'err'); showLogin();
+    }).then(function () { $('lGo').disabled = false; $('lGo').textContent = 'Verbinden'; });
+  }
+
+  /* ---------- Anzeige ---------- */
+  function catTitle(id) { var c = D.cats.filter(function (c) { return c.id === id; })[0]; return c ? c.title : '–'; }
+  function catSelect(val, onchange) {
+    var s = el('select'); D.cats.forEach(function (c) { s.appendChild(el('option', { value: c.id, text: c.title })); });
+    s.value = val; if (onchange) s.addEventListener('change', function () { onchange(s.value); }); return s;
+  }
+  function renderAll() { renderUpCat(); renderFilter(); renderList(); renderCats(); renderTexts(); status(); }
+  function renderUpCat() { var keep = $('upCat').value; var s = catSelect(keep || (D.cats[0] && D.cats[0].id)); s.id = 'upCat'; $('upCat').replaceWith(s); }
+  function renderFilter() {
+    var f = $('filter'); f.innerHTML = '';
+    [{ id: 'all', title: 'Alle' }].concat(D.cats).forEach(function (c) {
+      var n = c.id === 'all' ? D.photos.length : D.photos.filter(function (p) { return p.cat === c.id; }).length;
+      f.appendChild(el('button', { class: 'chip' + (filter === c.id ? ' on' : ''), text: c.title + ' · ' + n, onclick: function () { filter = c.id; renderFilter(); renderList(); } }));
+    });
+  }
+  function renderList() {
+    var box = $('list'); box.innerHTML = '';
+    var list = D.photos.filter(function (p) { return filter === 'all' || p.cat === filter; });
+    if (!list.length) { box.appendChild(el('p', { class: 'empty', text: 'Hier sind noch keine Fotos.' })); return; }
+    list.forEach(function (p) {
+      var isNew = !!pending[p.thumb];
+      var img = el('img', { alt: '', loading: 'lazy', src: previews[p.id] || rawUrl(p.thumb || p.src) });
+      var desc = el('input', { type: 'text', placeholder: 'Beschreibung (optional)', value: p.alt || '' });
+      desc.addEventListener('input', function () { p.alt = desc.value; status(); });
+      var sel = catSelect(p.cat, function (v) { p.cat = v; renderFilter(); renderList(); status(); });
+      var up = el('button', { class: 'ib', title: 'Nach vorne', 'aria-label': 'Nach vorne', text: '↑', onclick: function () { move(p, -1); } });
+      var dn = el('button', { class: 'ib', title: 'Nach hinten', 'aria-label': 'Nach hinten', text: '↓', onclick: function () { move(p, 1); } });
+      var rm = el('button', { class: 'ib del', title: 'Löschen', 'aria-label': 'Foto löschen', text: '✕', onclick: function () { del(p); } });
+      box.appendChild(el('div', { class: 'ph' }, [el('div', { class: isNew ? 'new' : '' }, [img]), el('div', {}, [desc, el('div', { class: 'acts' }, [sel, up, dn, rm])])]));
+    });
+  }
+  function move(p, dir) {
+    var i = D.photos.indexOf(p), j = i + dir;
+    while (j >= 0 && j < D.photos.length && D.photos[j].cat !== p.cat) j += dir;
+    if (j < 0 || j >= D.photos.length) return;
+    D.photos[i] = D.photos[j]; D.photos[j] = p; renderList(); status();
+  }
+  function del(p) {
+    if (!confirm('Dieses Foto wirklich löschen?')) return;
+    D.photos.splice(D.photos.indexOf(p), 1);
+    [p.src, p.thumb].forEach(function (path) { if (!path) return; if (pending[path]) delete pending[path]; else removed[path] = true; });
+    delete previews[p.id]; renderFilter(); renderList(); renderCats(); status();
+  }
+  function renderCats() {
+    var box = $('cats'); box.innerHTML = '';
+    D.cats.forEach(function (c) {
+      var n = D.photos.filter(function (p) { return p.cat === c.id; }).length;
+      var inp = el('input', { type: 'text', value: c.title });
+      inp.addEventListener('input', function () { c.title = inp.value; status(); });
+      inp.addEventListener('change', function () { if (!inp.value.trim()) { inp.value = c.title = 'Ohne Namen'; } renderUpCat(); renderFilter(); renderList(); });
+      var kids = [inp, el('small', { text: n + (n === 1 ? ' Foto' : ' Fotos') })];
+      if (!n && D.cats.length > 1) kids.push(el('button', { class: 'ib del', 'aria-label': 'Bereich löschen', text: '✕', onclick: function () { D.cats.splice(D.cats.indexOf(c), 1); if (filter === c.id) filter = 'all'; renderAll(); } }));
+      box.appendChild(el('div', { class: 'cat' }, kids));
+    });
+  }
+  $('addCat').addEventListener('click', function () {
+    var t = $('newCat').value.trim(); if (!t) return;
+    D.cats.push({ id: 'c' + Date.now().toString(36), title: t }); $('newCat').value = ''; renderAll();
+  });
+  function renderTexts() { $('tTag').value = D.texts.tagline || ''; $('tAbout').value = D.texts.about || ''; $('tMail').value = D.texts.email || ''; }
+  [['tTag', 'tagline'], ['tAbout', 'about'], ['tMail', 'email']].forEach(function (x) {
+    $(x[0]).addEventListener('input', function () { D.texts[x[1]] = $(x[0]).value; status(); });
+  });
+
+  /* ---------- Hochladen (verkleinern im Browser) ---------- */
+  function loadImg(file) {
+    return new Promise(function (res, rej) {
+      var u = URL.createObjectURL(file), im = new Image();
+      im.onload = function () { res({ im: im, url: u }); }; im.onerror = function () { URL.revokeObjectURL(u); rej(new Error('Bild nicht lesbar')); };
+      im.src = u;
+    });
+  }
+  function scaled(im, max, q) {
+    var s = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight));
+    var c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * s); c.height = Math.round(im.naturalHeight * s);
+    c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+    return c.toDataURL('image/jpeg', q);
+  }
+  function addFiles(files) {
+    files = [].slice.call(files).filter(function (f) { return /^image\//.test(f.type) || /\.(jpe?g|png|webp|heic)$/i.test(f.name); });
+    if (!files.length) return;
+    var catId = $('upCat').value, done = 0, failed = 0;
+    var next = function (k) {
+      if (k >= files.length) {
+        $('upState').textContent = done + (done === 1 ? ' Foto' : ' Fotos') + ' hinzugefügt' + (failed ? ', ' + failed + ' konnte(n) nicht gelesen werden' : '') + '. Unten auf „Veröffentlichen“ tippen, damit sie in der App erscheinen.';
+        filter = 'all'; renderFilter(); renderList(); renderCats(); status(); return;
+      }
+      $('upState').innerHTML = '<span class="spin"></span> Foto ' + (k + 1) + ' von ' + files.length + ' wird vorbereitet …';
+      loadImg(files[k]).then(function (r) {
+        var id = uid(), big = scaled(r.im, 1800, 0.82), small = scaled(r.im, 700, 0.78);
+        URL.revokeObjectURL(r.url);
+        var src = 'img/' + id + '.jpg', th = 'thumb/' + id + '.jpg';
+        pending[src] = big.split(',')[1]; pending[th] = small.split(',')[1]; previews[id] = small;
+        D.photos.push({ id: id, src: src, thumb: th, alt: '', cap: '', cat: catId });
+        done++;
+      }).catch(function () { failed++; }).then(function () { setTimeout(function () { next(k + 1); }, 0); });
+    };
+    next(0);
+  }
+  $('file').addEventListener('change', function () { addFiles($('file').files); $('file').value = ''; });
+  var drop = $('drop');
+  ['dragenter', 'dragover'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { addFiles(e.dataTransfer.files); });
+
+  /* ---------- Status & Veröffentlichen ---------- */
+  function dirty() { return D && (JSON.stringify(D) !== savedJson || Object.keys(pending).length || Object.keys(removed).length); }
+  function status() {
+    if (busy) return;
+    var d = dirty(); $('pub').disabled = !d;
+    var nNew = Object.keys(pending).filter(function (k) { return k.indexOf('thumb/') === 0; }).length;
+    $('st').innerHTML = d ? '<b>Nicht veröffentlicht</b><br>' + (nNew ? nNew + ' neue(s) Foto(s) · ' : '') + 'Änderungen sind noch nicht in der App' : 'Alles veröffentlicht ✓';
+  }
+  window.addEventListener('beforeunload', function (e) { if (dirty()) { e.preventDefault(); e.returnValue = ''; } });
+
+  $('pub').addEventListener('click', function () {
+    if (!dirty() || busy) return;
+    busy = true; $('pub').disabled = true; $('pub').innerHTML = '<span class="spin"></span>';
+    var prevV = D.version, prevU = D.updated;
+    var R = '/repos/' + cfg.user + '/' + cfg.repo, files = Object.keys(pending), total = files.length, n = 0, baseCommit;
+    var say = function (t) { $('st').innerHTML = t; };
+    say('Wird hochgeladen …');
+    gh(R + '/git/ref/heads/' + branch).then(function (ref) {
+      baseCommit = ref.object.sha;
+      return gh(R + '/git/commits/' + baseCommit);
+    }).then(function (commit) {
+      var tree = [];
+      // Fotos nacheinander hochladen (stabiler bei schwachem Netz)
+      var chain = Promise.resolve();
+      files.forEach(function (path) {
+        chain = chain.then(function () {
+          say('Lade Datei ' + (++n) + ' von ' + total + ' hoch …');
+          return gh(R + '/git/blobs', { method: 'POST', body: { content: pending[path], encoding: 'base64' } }).then(function (b) {
+            tree.push({ path: path, mode: '100644', type: 'blob', sha: b.sha });
+          });
+        });
+      });
+      return chain.then(function () {
+        say('Speichere Änderungen …');
+        Object.keys(removed).forEach(function (path) { tree.push({ path: path, mode: '100644', type: 'blob', sha: null }); });
+        D.version = (D.version || 0) + 1; D.updated = new Date().toISOString();
+        tree.push({ path: 'data.json', mode: '100644', type: 'blob', content: JSON.stringify(D, null, 1) });
+        return gh(R + '/git/trees', { method: 'POST', body: { base_tree: commit.tree.sha, tree: tree } });
+      });
+    }).then(function (t) {
+      return gh(R + '/git/commits', { method: 'POST', body: { message: 'Fotos/Texte aktualisiert über die Verwaltung', tree: t.sha, parents: [baseCommit] } });
+    }).then(function (c) {
+      return gh(R + '/git/refs/heads/' + branch, { method: 'PATCH', body: { sha: c.sha } });
+    }).then(function () {
+      savedJson = JSON.stringify(D); pending = {}; removed = {};
+      busy = false; renderList(); $('pub').textContent = 'Veröffentlichen';
+      note('Veröffentlicht! In 1–2 Minuten ist alles online. Danach die App einmal schließen und wieder öffnen.', 'ok');
+      status();
+    }).catch(function (e) {
+      // Nicht übernommen: Versionsnummer zurücksetzen, Änderungen bleiben erhalten
+      D.version = prevV; if (prevU === undefined) delete D.updated; else D.updated = prevU;
+      busy = false; $('pub').textContent = 'Veröffentlichen'; status();
+      note(explain(e) + ' Deine Änderungen sind noch da – einfach nochmal auf „Veröffentlichen“ tippen.', 'err');
+    });
+  });
+
+  /* ---------- Start ---------- */
+  if (cfg.user && cfg.token) { $('lUser').value = cfg.user; load(false); } else showLogin();
+})();
+</script>
+</body>
+</html>

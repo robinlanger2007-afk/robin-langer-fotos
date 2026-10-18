@@ -1,0 +1,208 @@
+{
+ "version": 1,
+ "cats": [
+  {
+   "id": "geburtstag",
+   "title": "Geburtstagsfotograf"
+  },
+  {
+   "id": "club",
+   "title": "Clubfotograf"
+  },
+  {
+   "id": "c1792272530021",
+   "title": "Portraits"
+  }
+ ],
+ "photos": [
+  {
+   "id": "f01",
+   "src": "img/foto-01.jpg",
+   "alt": "DJ-Set mit Nebelfontänen im Club",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-01.jpg"
+  },
+  {
+   "id": "f02",
+   "src": "img/foto-02.jpg",
+   "alt": "Goldkonfetti beim Geburtstag",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-02.jpg"
+  },
+  {
+   "id": "f03",
+   "src": "img/foto-03.jpg",
+   "alt": "Leuchtstäbe und Lichtstrahlen auf der Tanzfläche",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-03.jpg"
+  },
+  {
+   "id": "f04",
+   "src": "img/foto-04.jpg",
+   "alt": "Champagner in der VIP-Lounge",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-04.jpg"
+  },
+  {
+   "id": "f05",
+   "src": "img/foto-05.jpg",
+   "alt": "Blaues Konfetti über der Crowd",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-05.jpg"
+  },
+  {
+   "id": "f06",
+   "src": "img/foto-06.jpg",
+   "alt": "Leuchtstäbe, Konfetti und Nebel",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-06.jpg"
+  },
+  {
+   "id": "f07",
+   "src": "img/foto-07.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-07.jpg"
+  },
+  {
+   "id": "f08",
+   "src": "img/foto-08.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-08.jpg"
+  },
+  {
+   "id": "f09",
+   "src": "img/foto-09.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-09.jpg"
+  },
+  {
+   "id": "f10",
+   "src": "img/foto-10.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-10.jpg"
+  },
+  {
+   "id": "f11",
+   "src": "img/foto-11.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-11.jpg"
+  },
+  {
+   "id": "f12",
+   "src": "img/foto-12.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "club",
+   "thumb": "thumb/foto-12.jpg"
+  },
+  {
+   "id": "f13",
+   "src": "img/foto-13.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-13.jpg"
+  },
+  {
+   "id": "f14",
+   "src": "img/foto-14.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-14.jpg"
+  },
+  {
+   "id": "f15",
+   "src": "img/foto-15.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-15.jpg"
+  },
+  {
+   "id": "f16",
+   "src": "img/foto-16.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-16.jpg"
+  },
+  {
+   "id": "f17",
+   "src": "img/foto-17.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-17.jpg"
+  },
+  {
+   "id": "f18",
+   "src": "img/foto-18.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-18.jpg"
+  },
+  {
+   "id": "f19",
+   "src": "img/foto-19.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-19.jpg"
+  },
+  {
+   "id": "f20",
+   "src": "img/foto-20.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-20.jpg"
+  },
+  {
+   "id": "f21",
+   "src": "img/foto-21.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "geburtstag",
+   "thumb": "thumb/foto-21.jpg"
+  },
+  {
+   "id": "f22",
+   "src": "img/foto-22.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-22.jpg"
+  },
+  {
+   "id": "f23",
+   "src": "img/foto-23.jpg",
+   "alt": "",
+   "cap": "",
+   "cat": "c1792272530021",
+   "thumb": "thumb/foto-23.jpg"
+  }
+ ],
+ "texts": {
+  "tagline": "Fotograf aus Leipzig. Clubnächte, Partys und Portraits, wie sie sich anfühlen.",
+  "about": "Ich fotografiere Feiern, Clubnächte und Portraits in Leipzig und Umgebung. Du planst eine Party, ein Festival oder einen Geburtstag und suchst jemanden, der die besten Momente festhält? Schreib mir.",
+  "email": "robin.langer2007@gmail.com"
+ }
+}

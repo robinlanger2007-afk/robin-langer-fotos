@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Robin Langer · Fotos</title>
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0d0c11;color:#f3eee6;font:16px/1.5 system-ui,sans-serif;padding:24px 16px}
+.w{max-width:900px;margin:0 auto}
+h1{font-size:1.8rem;margin:0 0 .3rem}
+p{color:#a9a3b3;margin:0 0 1rem}
+a.b{display:inline-block;background:#f0b44c;color:#17141c;font-weight:700;text-decoration:none;border-radius:12px;padding:.7rem 1.1rem;margin-bottom:1.4rem}
+.g{columns:3 160px;column-gap:8px}
+.g img{width:100%;display:block;margin:0 0 8px;border-radius:8px;break-inside:avoid}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Robin Langer · Fotos</h1>
+  <p>Von hier holt sich die App ihre Fotos und Texte. Vorschau des aktuellen Stands:</p>
+  <a class="b" href="admin.html">Zur Verwaltung →</a>
+  <div class="g" id="g"></div>
+</div>
+<script>
+fetch('data.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+  var g = document.getElementById('g');
+  d.photos.forEach(function (p) { var i = document.createElement('img'); i.src = p.thumb || p.src; i.alt = p.alt || ''; i.loading = 'lazy'; g.appendChild(i); });
+}).catch(function () { document.getElementById('g').textContent = 'data.json konnte nicht geladen werden.'; });
+</script>
+</body>
+</html>
